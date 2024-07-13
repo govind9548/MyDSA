@@ -179,7 +179,23 @@ class singlyLinkedList{
         }
         return false;
     }
+
+
+    //find the middle node of a linkedList
     
+    public listNode getMiddleNode(){
+        if(head==null){
+            return null;
+        }
+        listNode slow = head;
+        listNode fast = head;
+        
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
     
     public static void main(String[] args) {
         singlyLinkedList sll = new singlyLinkedList();
@@ -221,7 +237,10 @@ class singlyLinkedList{
         
         System.out.println(sll.find(8));
         System.out.println(sll.find(100));
+
         
+        listNode middleNode = sll.getMiddleNode();
+        System.out.println("middle node is "+middleNode.data);
         
         
     }
