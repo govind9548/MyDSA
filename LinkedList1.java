@@ -182,7 +182,6 @@ class singlyLinkedList{
 
 
     //find the middle node of a linkedList
-    
     public listNode getMiddleNode(){
         if(head==null){
             return null;
@@ -196,6 +195,36 @@ class singlyLinkedList{
         }
         return slow;
     }
+
+
+    // get nth node from the last of the linkedList
+    public listNode nthNodeFromLast(int n){
+        if(head == null){
+            return null;
+        }
+        if(n<0){
+            throw new IllegalArgumentException("Invalid Value: n = "+ n);
+        }
+        listNode mainPtr = head;
+        listNode refPtr = head;
+        int count = 0;
+        
+        while(count < n){
+            if(refPtr == null){
+                throw new IllegalArgumentException(n + " is greater than the number of nodes in list");
+            }
+            refPtr = refPtr.next;
+            count++;
+        }
+        
+        while(refPtr != null){
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+        return mainPtr;
+    }
+
+
     
     public static void main(String[] args) {
         singlyLinkedList sll = new singlyLinkedList();
@@ -242,6 +271,6 @@ class singlyLinkedList{
         listNode middleNode = sll.getMiddleNode();
         System.out.println("middle node is "+middleNode.data);
         
-        
+        System.out.println("nth node from last is "+sll.nthNodeFromLast(3).data);
     }
 }
