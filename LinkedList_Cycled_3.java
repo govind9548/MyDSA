@@ -119,6 +119,34 @@ class singlyLinkedList{
     // }
     
     
+
+
+    
+    // to remove the cycled node from LL
+    public listNode removeCycledNode(){
+        listNode fast = head;
+        listNode slow = head;
+        
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if(slow == fast){
+                removeLoopedNode(slow);
+                // return;
+            }
+        }
+        return null;
+    }
+    public void removeLoopedNode( listNode slow){
+        listNode temp = head;
+        while(slow.next != temp.next){
+            temp = temp.next;
+            slow = slow.next;
+        }
+        slow.next = null;
+    }
+
+
     
     
     public static void main( String[] args) {
@@ -130,12 +158,15 @@ class singlyLinkedList{
         sll.insertAtBeginning(1);
         sll.insertAtBeginning(1);
         
-        sll.display();
+        // sll.display();
         
         System.out.println(sll.isCycle());
-        sll.createALoopInLinkedList();
+        sll.createALoopInLinkedList(); // checking either cycled or not
         System.out.println(sll.isCycle());
-        System.out.println(sll.cycledNode().data);
+        System.out.println("Cycle starts from node " + sll.cycledNode().data);
+        sll.removeCycledNode();   // after removal 
+        System.out.println(sll.isCycle());
+        sll.display();
         
     }
 }
