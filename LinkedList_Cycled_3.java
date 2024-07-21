@@ -170,3 +170,6 @@ class singlyLinkedList{
         
     }
 }
+
+
+// now do leetcode 21 and 2
